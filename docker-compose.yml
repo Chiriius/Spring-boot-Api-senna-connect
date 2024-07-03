@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  api-senna:
+    build: api-senna-connect-ar
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: ${DB_URL}
+      DB_USER_NAME: ${DB_USER_NAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    restart: always
+
+
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
