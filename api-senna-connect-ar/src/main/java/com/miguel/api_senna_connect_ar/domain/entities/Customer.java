@@ -15,8 +15,6 @@ import lombok.Builder;
 import lombok.Data;
 
 
-
-
 @AllArgsConstructor
 @Data
 @Builder
@@ -27,6 +25,7 @@ public class Customer implements Serializable {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String uid;
+    @Column(unique = true, length = 100, nullable = false)
     private String email;
     private String password;
     @Column(name = "nombre")
@@ -53,8 +52,9 @@ public class Customer implements Serializable {
     public Customer(){
         this.uid = UUID.randomUUID().toString();
     }
-    
-    
+
+
+  
 }
 
 
